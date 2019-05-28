@@ -14,7 +14,7 @@
 //Trigrame est devenue un Quadragrame pour ne pas confondre avec CMatrice
 class CMatriceException : public CException {
 private:
-	char* message;
+	char* pcMEMessage;
 public:
 	/***************************************************************
 	**** Nom: CMatriceException                                 ****
@@ -39,7 +39,7 @@ public:
 	**** Entraîne:                                                          ****
 	**** Sortie:                                                            ****
 	***************************************************************************/
-	CMatriceException(unsigned int uiErreur, const char* message);
+	CMatriceException(unsigned int uiErreur, const char* cpcMessage);
 
 	/***************************************************
 	**** Nom: ~CMatriceException()                  ****
@@ -63,10 +63,7 @@ public:
 	**** Entraîne:                               ****
 	**** Sortie:                                 ****
 	************************************************/
-	void MATEAfficher() {
-		if (message != NULL)
-			std::cout << message << std::endl;
-	};
+	void MATEAfficher();
 };
 
 #endif

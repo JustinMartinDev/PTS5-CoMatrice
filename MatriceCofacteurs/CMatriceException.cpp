@@ -11,9 +11,8 @@
 **** Entraîne:                                                          ****
 **** Sortie:                                                            ****
 ***************************************************************************/
-CMatriceException::CMatriceException(unsigned int uiErreur, const char* message) : CException(uiErreur) {
-	std::cout << message << std::endl;
-	message = message;
+CMatriceException::CMatriceException(unsigned int uiErreur, const char* cpcMessage) : CException(uiErreur) {
+	pcMEMessage = _strdup(cpcMessage);
 }
 /***************************************************
 **** Nom: ~CMatriceException()                  ****
@@ -26,5 +25,10 @@ CMatriceException::CMatriceException(unsigned int uiErreur, const char* message)
 **** Sortie:                                    ****
 ***************************************************/
 CMatriceException::~CMatriceException() {
-	delete(message);
+	delete(pcMEMessage);
+}
+
+void CMatriceException::MATEAfficher() {
+	if (pcMEMessage != NULL)
+		std::cerr << pcMEMessage << std::endl;
 }

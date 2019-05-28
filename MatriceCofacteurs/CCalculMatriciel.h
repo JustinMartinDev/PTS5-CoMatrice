@@ -3,7 +3,9 @@
 #define CCalculMatriciel_H
 
 #include "CMatrice.h"
+#include <cmath>
 
+template <class MType>
 class CCalculMatriciel {
 	public :
 		/************************************************
@@ -19,11 +21,33 @@ class CCalculMatriciel {
 		**** Sortie: CMatrice, matrice contenant la  ****
 		****    transposé                            ****
 		************************************************/
-		template <class MType>
-		static CMatrice<MType> CALTranspose(CMatrice<MType> MATParam);
+		CMatrice<MType> CALTranspose(CMatrice<MType> MATParam);
 
-		//Destructeur virtuel pure permettant de rendre la classe abstraite et non instanciable
-		virtual ~CCalculMatriciel() = 0;
+		/**************************************************************************************************
+		**** Nom: CALDeterminantMatrice(CMatrice<MType> MATParam)                                      ****
+		***************************************************************************************************
+		**** Permet de calculer le déterminant d'une matrice carrée passée en paramètre                ****
+		***************************************************************************************************
+		**** Précondition: Si MType est une classe d'Objet alors elle doit surcharger l'opérateur "*"  ****
+		****    La matrice doit être carrée                                                            ****
+		**** Entrée: CMatrice<MType> : MATParam => Matrice sujet au calcul du déterminant              ****
+		**** Entraîne: Lève une CMatriceException si la matrice passé en paramètre n'est pas carrée    ****
+		**** Sortie: double : déterminant de la matrice passé en paramètre                             ****
+		**************************************************************************************************/
+		double CALCalculerDeterminant(CMatrice<MType> MATParam);
+	
+		CMatrice<double> CALCalculerComatrice(CMatrice<MType> MATParam);
+
+	private :
+		int* CALTrouverMeilleurCibleDeterminant(CMatrice<MType> MATParam, MType valeurRecherchee);
+
+		double CALCalculerDeterminant(CMatrice<MType> MATParam, int iLigneCible, int iColonneCible);
+
+		CMatrice<MType> CALCalculerSousMatrice(CMatrice<MType> MATParam, unsigned int uiLigne, unsigned int uiColonne);
+
+		int* CALComparerCible(unsigned int* piNbLigne, unsigned int* piNbColonne, unsigned int uiTaille);
 };
 
+
+#include "CCalculMatriciel.cpp"
 #endif // CCalculMatriciel_H

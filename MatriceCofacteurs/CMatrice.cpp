@@ -1,6 +1,6 @@
-//#ifndef ERROR_MAX_SIZE 
+#ifndef ERROR_MAX_SIZE 
 #define ERROR_MAX_SIZE 256
-//#endif
+#endif
 
 /**************************************************************************
 **** Nom: CMatrice<MType>();                                           ****
