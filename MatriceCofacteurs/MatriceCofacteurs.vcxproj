@@ -114,7 +114,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -122,7 +122,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,21 +154,30 @@
   <ItemGroup>
     <ClCompile Include="CCalculMatriciel.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="CFileMatrice.cpp" />
     <ClCompile Include="CMatrice.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="CMatriceException.cpp" />
+    <ClCompile Include="CMatriceFichier.cpp" />
+    <ClCompile Include="CParseur.cpp" />
+    <ClCompile Include="CParseurException.cpp" />
     <ClCompile Include="MatriceCofacteurs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCalculMatriciel.h" />
     <ClInclude Include="CException.h" />
-    <ClInclude Include="CFileMatrice.h" />
     <ClInclude Include="CMatriceException.h" />
     <ClInclude Include="CMatrice.h" />
+    <ClInclude Include="CMatriceFichier.h" />
+    <ClInclude Include="CParseur.h" />
+    <ClInclude Include="CParseurException.h" />
     <ClInclude Include="ObjectClass.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="dataFile.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

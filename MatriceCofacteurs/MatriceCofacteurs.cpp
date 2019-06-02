@@ -4,27 +4,22 @@
 
 #include "CMatrice.h"
 #include "CCalculMatriciel.h"
+#include "CMatriceFichier.h"
 
-int main(){
-    CMatrice<int> iMATCarre3(3); //Instancie une matrice carrée d'entier et avec comme taille 3
-
-	iMATCarre3.MATModifierElement(0, 0, 5);
-	iMATCarre3.MATModifierElement(0, 1, 6);
-	iMATCarre3.MATModifierElement(0, 2, 7); //modifie l'élément à la position 0,2 et le remplace par la valeur 7
-	iMATCarre3.MATModifierElement(1, 0, 8);
-	iMATCarre3.MATModifierElement(1, 1, 9);
-	iMATCarre3.MATModifierElement(1, 2, 10);
-	iMATCarre3.MATModifierElement(2, 0, 11);
-	iMATCarre3.MATModifierElement(2, 1, 12);
-	iMATCarre3.MATModifierElement(2, 2, 14);
-
-	CCalculMatriciel<int>* iCALBoiteAOutil = new CCalculMatriciel<int>();
-
-	try {
-		(iCALBoiteAOutil->CALCalculerComatrice(iMATCarre3)).MATAfficherMatrice();
-	}
-	catch (CMatriceException meException) {
-		meException.MATEAfficher();
-	}
+int main(int argc, char**argv){
+	CCalculMatriciel<double>* dCALBoiteAOutil = new CCalculMatriciel<double>();
+	CMatriceFichier* MAFMatriceLecteurFichier = new CMatriceFichier();
 	
+	unsigned int uiIndexPath = 0;
+	for (uiIndexPath = 1; uiIndexPath < argc; uiIndexPath++) {
+		try {
+			CMatrice<double> dMATMatrice = *MAFMatriceLecteurFichier->MAFLireFichier(argv[uiIndexPath]);
+			CMatrice<double> dMATComatrice = dCALBoiteAOutil->CALCalculerComatrice(dMATMatrice);
+			dMATComatrice.MATAfficherMatrice();
+			//std::cout << dCALBoiteAOutil->CALCalculerDeterminant(dMATMatrice) << std::endl;
+		}catch (CMatriceException meException) {
+			meException.MATEAfficher();
+		}
+	}
+	return 0;
 }
